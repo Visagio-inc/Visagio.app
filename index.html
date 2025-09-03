@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GlowMentor — Look Analyzer (MVP)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>GlowMentor (MVP)</h1>
+    <p class="hint">Upload a clear selfie (frontal, good light). Works offline after first load on modern Android browsers.</p>
+
+    <div class="controls">
+      <input id="imageUpload" type="file" accept="image/*" />
+      <button id="analyzeBtn">Analyze</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <div class="preview-area">
+      <canvas id="canvas" width="480" height="640"></canvas>
+      <div id="overlay"></div>
+    </div>
+
+    <div id="results" class="results hidden">
+      <h2>Results</h2>
+      <div class="score-row">
+        <div>Overall Score: <span id="overallScore">—</span>/100</div>
+      </div>
+      <div class="metrics">
+        <div>Symmetry: <span id="symmetryScore">—</span>/100</div>
+        <div>Proportions: <span id="proportionScore">—</span>/100</div>
+        <div>Skin: <span id="skinScore">—</span>/100</div>
+        <div>Jaw/Structure: <span id="structureScore">—</span>/100</div>
+      </div>
+
+      <h3>Personalized Glow-Up Plan</h3>
+      <div id="advice"></div>
+    </div>
+
+    <footer>
+      <small>MVP — client-side analysis. For best results: frontal photo, even light. Photos are not uploaded anywhere.</small>
+    </footer>
+  </div>
+
+  <!-- TensorFlow.js + model -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
