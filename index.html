@@ -1,53 +1,173 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GlowMentor — Look Analyzer (MVP)</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visagio.app - AI Glow-Up Mentor</title>
+  <style>
+    /* ---------- Base Styles ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      background: #0096ff;
+      border: none;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: #0074cc;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      border-bottom: 1px solid #eee;
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    nav a {
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    /* ---------- Hero Section ---------- */
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    /* ---------- Features ---------- */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .feature-card {
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 10px;
+    }
+
+    /* ---------- Call to Action ---------- */
+    .cta {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f1f1f1;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>GlowMentor (MVP)</h1>
-    <p class="hint">Upload a clear selfie (frontal, good light). Works offline after first load on modern Android browsers.</p>
-
-    <div class="controls">
-      <input id="imageUpload" type="file" accept="image/*" />
-      <button id="analyzeBtn">Analyze</button>
-      <button id="resetBtn">Reset</button>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Visagio Logo">
     </div>
+    <nav>
+      <a href="#how">How It Works</a>
+      <a href="#demo">Try Demo</a>
+      <a href="#tips">Glow-Up Tips</a>
+    </nav>
+  </header>
 
-    <div class="preview-area">
-      <canvas id="canvas" width="480" height="640"></canvas>
-      <div id="overlay"></div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Your AI Glow-Up Mentor</h1>
+    <p>Get a personalized face rating and glow-up plan in seconds.</p>
+    <button onclick="alert('APK download coming soon!')">Download Free APK</button>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="how">
+    <div class="feature-card">
+      <h3>1. Upload Your Selfie</h3>
+      <p>Snap or upload your photo securely.</p>
     </div>
-
-    <div id="results" class="results hidden">
-      <h2>Results</h2>
-      <div class="score-row">
-        <div>Overall Score: <span id="overallScore">—</span>/100</div>
-      </div>
-      <div class="metrics">
-        <div>Symmetry: <span id="symmetryScore">—</span>/100</div>
-        <div>Proportions: <span id="proportionScore">—</span>/100</div>
-        <div>Skin: <span id="skinScore">—</span>/100</div>
-        <div>Jaw/Structure: <span id="structureScore">—</span>/100</div>
-      </div>
-
-      <h3>Personalized Glow-Up Plan</h3>
-      <div id="advice"></div>
+    <div class="feature-card">
+      <h3>2. Get Instant Rating</h3>
+      <p>AI analyzes symmetry, ratios, and more.</p>
     </div>
+    <div class="feature-card">
+      <h3>3. Unlock Your Glow-Up</h3>
+      <p>Receive a customized improvement plan.</p>
+    </div>
+  </section>
 
-    <footer>
-      <small>MVP — client-side analysis. For best results: frontal photo, even light. Photos are not uploaded anywhere.</small>
-    </footer>
-  </div>
+  <!-- Call to Action -->
+  <section class="cta">
+    <h2>Ready to unlock your best version?</h2>
+    <button onclick="alert('APK download coming soon!')">Try Visagio Free</button>
+  </section>
 
-  <!-- TensorFlow.js + model -->
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/face-landmarks-detection"></script>
-
-  <script src="app.js"></script>
+  <!-- Footer -->
+  <footer>
+    © 2025 Visagio.app | All Rights Reserved
+  </footer>
 </body>
 </html>
+
